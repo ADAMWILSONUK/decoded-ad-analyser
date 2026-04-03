@@ -126,6 +126,28 @@ export const channels: ChannelData[] = [
     ],
   },
   {
+    id: "snapchat-ads",
+    name: "Snapchat Ads",
+    category: "paid",
+    color: "#FFFC00",
+    spend: 12000,
+    impressions: 1800000,
+    clicks: 54000,
+    leads: 1620,
+    conversions: 162,
+    revenue: 24300,
+    cpa: 74.07,
+    roas: 2.03,
+    trend: "up",
+    trendPercent: 10,
+    weeklyData: [
+      { week: "W1", spend: 2500, impressions: 380000, clicks: 11400, leads: 342, conversions: 32, revenue: 4800 },
+      { week: "W2", spend: 2800, impressions: 420000, clicks: 12600, leads: 378, conversions: 38, revenue: 5700 },
+      { week: "W3", spend: 3200, impressions: 480000, clicks: 14400, leads: 432, conversions: 44, revenue: 6600 },
+      { week: "W4", spend: 3500, impressions: 520000, clicks: 15600, leads: 468, conversions: 48, revenue: 7200 },
+    ],
+  },
+  {
     id: "programmatic",
     name: "Programmatic Display",
     category: "paid",
@@ -193,9 +215,9 @@ export const channels: ChannelData[] = [
   },
   {
     id: "email",
-    name: "Email Marketing",
+    name: "ActiveCampaign (Email)",
     category: "crm",
-    color: "#EA4335",
+    color: "#356AE6",
     spend: 3500,
     impressions: 180000,
     clicks: 27000,
@@ -352,10 +374,11 @@ export const funnelStages: FunnelStage[] = [
 export const attributionData: AttributionTouch[] = [
   { channel: "Meta Ads", firstTouch: 22, lastTouch: 14, linear: 17, positionBased: 18 },
   { channel: "Google Ads", firstTouch: 18, lastTouch: 16, linear: 16, positionBased: 16 },
-  { channel: "TikTok Ads", firstTouch: 15, lastTouch: 5, linear: 8, positionBased: 10 },
-  { channel: "Organic Social", firstTouch: 12, lastTouch: 8, linear: 10, positionBased: 10 },
-  { channel: "SEO", firstTouch: 10, lastTouch: 12, linear: 12, positionBased: 11 },
-  { channel: "Email", firstTouch: 3, lastTouch: 25, linear: 15, positionBased: 13 },
+  { channel: "TikTok Ads", firstTouch: 13, lastTouch: 5, linear: 7, positionBased: 9 },
+  { channel: "Snapchat Ads", firstTouch: 8, lastTouch: 3, linear: 5, positionBased: 6 },
+  { channel: "Organic Social", firstTouch: 10, lastTouch: 7, linear: 9, positionBased: 9 },
+  { channel: "SEO", firstTouch: 9, lastTouch: 11, linear: 11, positionBased: 10 },
+  { channel: "ActiveCampaign", firstTouch: 3, lastTouch: 24, linear: 14, positionBased: 12 },
   { channel: "SMS / Push", firstTouch: 1, lastTouch: 8, linear: 5, positionBased: 4 },
   { channel: "Influencer", firstTouch: 12, lastTouch: 6, linear: 9, positionBased: 10 },
   { channel: "Affiliate", firstTouch: 4, lastTouch: 3, linear: 4, positionBased: 4 },
@@ -431,6 +454,15 @@ export const recommendations: Recommendation[] = [
     suggestedChange: "Test dedicated TikTok landing pages, implement TikTok Pixel events, test Spark Ads",
   },
   {
+    channel: "Snapchat Ads",
+    action: "test",
+    priority: "medium",
+    reason:
+      "2.0x ROAS is borderline profitable but trending up 10% WoW. Strong reach with younger demographics (1.8M impressions). Conversion path from Snap to ClubTickets needs tightening.",
+    impact: "Optimising Snap ad → landing page flow could lift ROAS from 2.0x to 2.8x.",
+    suggestedChange: "Test Snap-native landing pages, implement Snap Pixel, use Story Ads with swipe-up to ClubTickets",
+  },
+  {
     channel: "Influencer Partnerships",
     action: "test",
     priority: "medium",
@@ -473,7 +505,7 @@ export type CategorySummary = {
 };
 
 export const categorySummaries: CategorySummary[] = [
-  { category: "Paid Media", spend: 120000, revenue: 235950, conversions: 1573, roas: 1.97, color: "#3B82F6" },
+  { category: "Paid Media", spend: 132000, revenue: 260250, conversions: 1735, roas: 1.97, color: "#3B82F6" },
   { category: "Organic", spend: 13000, revenue: 135600, conversions: 904, roas: 10.43, color: "#22C55E" },
   { category: "CRM", spend: 5500, revenue: 185700, conversions: 1238, roas: 33.76, color: "#EF4444" },
   { category: "Referral", spend: 30000, revenue: 101400, conversions: 676, roas: 3.38, color: "#F59E0B" },

@@ -1,10 +1,15 @@
 "use client";
 
-import { categorySummaries, totalRevenue, totalSpend } from "@/lib/data";
-import { formatCurrency, formatNumber } from "@/lib/utils";
+import { type CategorySummary } from "@/lib/data";
+import { formatCurrency } from "@/lib/utils";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
-export default function CategoryBreakdown() {
+interface Props {
+  categorySummaries: CategorySummary[];
+  totalRevenue: number;
+}
+
+export default function CategoryBreakdown({ categorySummaries, totalRevenue }: Props) {
   const revenueData = categorySummaries.map((c) => ({
     name: c.category,
     value: c.revenue,
@@ -25,32 +30,18 @@ export default function CategoryBreakdown() {
       <p className="text-xs text-zinc-500 mb-6">Revenue and spend distribution by channel category</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Revenue Pie */}
         <div>
           <h3 className="text-sm font-medium text-zinc-300 mb-3 text-center">Revenue by Category</h3>
           <div className="h-52">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
-                <Pie
-                  data={revenueData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={50}
-                  outerRadius={80}
-                  dataKey="value"
-                  stroke="none"
-                >
+                <Pie data={revenueData} cx="50%" cy="50%" innerRadius={50} outerRadius={80} dataKey="value" stroke="none">
                   {revenueData.map((entry, i) => (
                     <Cell key={i} fill={entry.color} />
                   ))}
                 </Pie>
                 <Tooltip
-                  contentStyle={{
-                    backgroundColor: "#18181b",
-                    border: "1px solid #3f3f46",
-                    borderRadius: "8px",
-                    fontSize: "12px",
-                  }}
+                  contentStyle={{ backgroundColor: "#18181b", border: "1px solid #3f3f46", borderRadius: "8px", fontSize: "12px" }}
                   formatter={(value) => [formatCurrency(Number(value)), "Revenue"]}
                 />
               </PieChart>
@@ -58,32 +49,18 @@ export default function CategoryBreakdown() {
           </div>
         </div>
 
-        {/* Spend Pie */}
         <div>
           <h3 className="text-sm font-medium text-zinc-300 mb-3 text-center">Spend by Category</h3>
           <div className="h-52">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
-                <Pie
-                  data={spendData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={50}
-                  outerRadius={80}
-                  dataKey="value"
-                  stroke="none"
-                >
+                <Pie data={spendData} cx="50%" cy="50%" innerRadius={50} outerRadius={80} dataKey="value" stroke="none">
                   {spendData.map((entry, i) => (
                     <Cell key={i} fill={entry.color} />
                   ))}
                 </Pie>
                 <Tooltip
-                  contentStyle={{
-                    backgroundColor: "#18181b",
-                    border: "1px solid #3f3f46",
-                    borderRadius: "8px",
-                    fontSize: "12px",
-                  }}
+                  contentStyle={{ backgroundColor: "#18181b", border: "1px solid #3f3f46", borderRadius: "8px", fontSize: "12px" }}
                   formatter={(value) => [formatCurrency(Number(value)), "Spend"]}
                 />
               </PieChart>
@@ -92,7 +69,6 @@ export default function CategoryBreakdown() {
         </div>
       </div>
 
-      {/* Category stats */}
       <div className="mt-6 grid grid-cols-2 md:grid-cols-5 gap-3">
         {categorySummaries.map((cat) => (
           <div key={cat.category} className="text-center p-3 rounded-lg bg-zinc-800/50">

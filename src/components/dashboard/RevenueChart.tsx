@@ -1,11 +1,21 @@
 "use client";
 
-import { weeklyTrend } from "@/lib/data";
 import {
   ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from "recharts";
 
-export default function RevenueChart() {
+interface WeeklyPoint {
+  week: string;
+  spend: number;
+  revenue: number;
+  roas: number;
+}
+
+interface Props {
+  weeklyTrend: WeeklyPoint[];
+}
+
+export default function RevenueChart({ weeklyTrend }: Props) {
   return (
     <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
       <h2 className="text-lg font-semibold text-white mb-2">Weekly Revenue vs Spend</h2>

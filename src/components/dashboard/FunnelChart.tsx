@@ -1,10 +1,14 @@
 "use client";
 
-import { funnelStages } from "@/lib/data";
+import { type FunnelStage } from "@/lib/data";
 import { formatNumber } from "@/lib/utils";
 
-export default function FunnelChart() {
-  const maxVal = funnelStages[0].total;
+interface Props {
+  funnelStages: FunnelStage[];
+}
+
+export default function FunnelChart({ funnelStages }: Props) {
+  const maxVal = funnelStages[0]?.total || 1;
 
   return (
     <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">

@@ -1,11 +1,15 @@
 "use client";
 
-import { attributionData } from "@/lib/data";
+import { type AttributionTouch } from "@/lib/data";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from "recharts";
 
-export default function AttributionChart() {
+interface Props {
+  attributionData: AttributionTouch[];
+}
+
+export default function AttributionChart({ attributionData }: Props) {
   return (
     <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
       <h2 className="text-lg font-semibold text-white mb-2">Multi-Touch Attribution</h2>

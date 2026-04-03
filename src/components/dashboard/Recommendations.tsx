@@ -1,6 +1,6 @@
 "use client";
 
-import { recommendations } from "@/lib/data";
+import { type Recommendation } from "@/lib/data";
 import { ArrowUpCircle, ArrowDownCircle, MinusCircle, FlaskConical } from "lucide-react";
 
 const actionConfig = {
@@ -16,7 +16,11 @@ const priorityBadge = {
   low: "bg-zinc-500/20 text-zinc-400 border-zinc-500/30",
 };
 
-export default function Recommendations() {
+interface Props {
+  recommendations: Recommendation[];
+}
+
+export default function Recommendations({ recommendations }: Props) {
   const sorted = [...recommendations].sort((a, b) => {
     const order = { high: 0, medium: 1, low: 2 };
     return order[a.priority] - order[b.priority];

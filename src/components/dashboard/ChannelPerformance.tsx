@@ -1,6 +1,6 @@
 "use client";
 
-import { channels } from "@/lib/data";
+import { type ChannelData } from "@/lib/data";
 import { formatCurrency, formatNumber, formatPercent } from "@/lib/utils";
 import { ArrowUp, ArrowDown, Minus } from "lucide-react";
 
@@ -10,7 +10,11 @@ const TrendIcon = ({ trend, percent }: { trend: string; percent: number }) => {
   return <span className="text-zinc-500 text-xs flex items-center gap-0.5"><Minus className="w-3 h-3" />{formatPercent(percent)}</span>;
 };
 
-export default function ChannelPerformance() {
+interface Props {
+  channels: ChannelData[];
+}
+
+export default function ChannelPerformance({ channels }: Props) {
   const sorted = [...channels].sort((a, b) => b.revenue - a.revenue);
 
   return (

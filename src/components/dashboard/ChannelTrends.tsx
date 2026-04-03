@@ -1,13 +1,15 @@
 "use client";
 
-import { channels } from "@/lib/data";
-import { formatCurrency } from "@/lib/utils";
+import { type ChannelData } from "@/lib/data";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from "recharts";
 
-export default function ChannelTrends() {
-  // Build weekly ROAS data per channel
+interface Props {
+  channels: ChannelData[];
+}
+
+export default function ChannelTrends({ channels }: Props) {
   const weeklyROAS = ["W1", "W2", "W3", "W4"].map((week) => {
     const point: Record<string, string | number> = { week };
     channels.forEach((ch) => {
@@ -19,7 +21,6 @@ export default function ChannelTrends() {
     return point;
   });
 
-  // Only show paid + referral channels (ones with meaningful spend)
   const trackedChannels = channels.filter(
     (c) => c.category === "paid" || c.category === "referral"
   );
